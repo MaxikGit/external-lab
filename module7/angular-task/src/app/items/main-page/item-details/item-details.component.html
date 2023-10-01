@@ -1,0 +1,37 @@
+<!-- Center of the page-->
+<div class="container-xxl">
+  <div class="row justify-content-center pt-5 g-5 mx-5">
+    <div class="col-9">
+      <img src="{{item.image}}" class="h-75 border-dark img-fluid" alt="image 75x75">
+      <div class="mt-4 pt-4">
+        <h5>Item Detailed Description</h5>
+        <p class="mt-3 d-block mb-5">
+          {{item.longDescription}}
+        </p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card h-75 border-0">
+        <div class="card-body py-4">
+          <h4 class="card-title fw-bold">{{item.name}}</h4>
+          <p class="mt-4 card-text text-secondary d-block ">
+            {{item.description}}
+          </p>
+          <p class="card-text mt-5 mb-0 text-secondary">Time Left To Buy</p>
+          <p class="h5">{{timeLeftToBuy()}}</p>
+          <div class="row mt-4">
+            <p class="col h4 text-dark fw-bold">
+              {{item.price | currency:'USD':'symbol-narrow':'1.0-0'}}
+            </p>
+            <div class="col-8 text-end">
+              <button class="btn btn-link text-decoration-none card-text text-nowrap" (click)="addToCart()">
+                Add to Cart
+                <span class="material-icons align-bottom text-secondary">shopping_cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

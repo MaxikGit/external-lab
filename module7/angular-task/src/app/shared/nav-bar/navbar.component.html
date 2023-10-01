@@ -1,0 +1,52 @@
+<!--<div class="fixed-top">-->
+<!-- navbar -->
+<nav class="navbar navbar-light bg-white">
+  <div class="container-xxl">
+    <div class="nav-item col-3">
+
+      <!-- toggle button for collapsible menu -->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#main-nav"
+              aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- navbar brand / title -->
+      <a class="navbar-brand ms-3" href="#">
+        <span class="text-dark fw-bold">
+          {{logo}}
+        </span>
+      </a>
+    </div>
+
+    <!-- Search box with input field and dropdown menu "All Categories" -->
+    <div class="nav-item col-6">
+      <search-box></search-box>
+    </div>
+
+    <!--        heart + cart buttons-->
+    <div class="nav-item col-3">
+      <div class="d-flex justify-content-end">
+        <button [disabled]="isFavouriteBlocked" class="btn btn-link text-secondary " matTooltip="Show favorite" (click)="toggleFavourite()">
+          <span class="material-icons" [ngClass]="{'text-danger': isFavouritePressed}">favorite</span>
+        </button>
+        <button [disabled]="cartBadgeHidden" routerLink="checkout" class="btn btn-link text-secondary" matTooltip="Add to cart"
+           matBadge="{{cartItems$ | async}}" matBadgeColor="primary" [matBadgeHidden]="cartBadgeHidden">
+          <span class="material-icons">shopping_cart</span>
+        </button>
+        <span class="text-nowrap btn btn-link text-decoration-none">
+            <a routerLink="login" class="text-decoration-none text-dark mx-3">Login</a>
+            <span>|</span>
+            <a routerLink="sign_up" class="text-decoration-none text-dark mx-3">Sign Up</a>
+          </span>
+      </div>
+    </div>
+
+    <!-- navbar links collapsible -->
+    <div class="collapse navbar-collapse mt-2" id="main-nav">
+      <menu-collapse-button-row></menu-collapse-button-row>
+    </div>
+  </div>
+</nav>
+<!--</div>-->
+

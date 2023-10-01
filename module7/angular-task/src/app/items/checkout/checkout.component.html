@@ -1,0 +1,56 @@
+<grey-title-strip [pageTitle]="'Checkout'"></grey-title-strip>
+
+<!-- Center of the page-->
+<div class="container-xxl">
+  <div class="row justify-content-center">
+    <div class="col-8 pt-5 ">
+      <form class="text-secondary">
+        <div class="list-group ">
+          <div class="list-group scroll-v-60">
+<!--          <div *ngFor="let item of items; let i=index;" class="list-group-item border-0 py-3">-->
+            <div *ngFor="let itemEntry of itemsMap | keyvalue; let i=index;" class="list-group-item border-0 py-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <a class="" routerLink="/items/{{itemEntry.key.id}}">
+                <img src="{{itemEntry.key.image}}" class="square-128" alt="image 128x128">
+              </a>
+              <div class="mx-4">
+                <h4 class="mb-4">{{itemEntry.key.name}}</h4>
+                <p class="mb-0">{{itemEntry.key.description}}
+                </p>
+              </div>
+              <button class="btn btn-link text-decoration-none text-end" (click)="removeItem(itemEntry.key)"
+                   matTooltip="Click to remove" [matTooltipShowDelay]="tooltipShowDelay" [matTooltipPosition]="'after'">
+                <p class="fs-4 mx-2 text-nowrap">
+                  {{itemEntry.value}} x {{itemEntry.key.price | currency:'USD':'symbol-narrow':'1.0-0'}}
+                </p>
+              </button>
+            </div>
+          </div>
+          </div>
+          <div class="list-group-item border-0 py-3">
+            <hr class="m-0 border border-dark border-1 mb-4">
+            <div class="row justify-content-end mb-5">
+              <div class="col-3 fs-4">
+                <div class="d-flex justify-content-end">
+                  <p class="">Total</p>
+                  <p class="text-end mx-2">{{total | currency:'USD':'symbol-narrow':'1.0-0'}}</p>
+                </div>
+              </div>
+            </div>
+            <!--  buttons section-->
+            <div class="row gx-3 gy-3">
+              <div class="col-6"></div>
+              <div class="col-3 d-grid">
+                <button type="button" class="btn border-secondary text-secondary" (click)="onBack()">Back</button>
+              </div>
+              <div class="col-3 d-grid">
+                <button type="button" class="btn btn-grass" (click)="onCheckout()">Checkout</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

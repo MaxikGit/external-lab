@@ -1,0 +1,14 @@
+driverClassName=org.postgresql.Driver
+jdbcUrl=jdbc:postgresql://localhost:5432/module2
+username=
+password=
+maximumPoolSize=10
+poolName=HikariCP
+
+#prepared statement cache configuration
+dataSource.prepStmtCacheEnabled=true
+dataSource.prepStmtCacheSize=250
+dataSource.prepStmtCacheSqlLimit=2048
+dataSource.useServerPrepStmts=true
+
+

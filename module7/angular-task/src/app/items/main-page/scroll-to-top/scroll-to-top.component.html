@@ -1,0 +1,9 @@
+
+<div class="position-fixed bottom-0 end-0 m-2 my-4">
+  <button type="button" id="btn-back-to-top"
+          class="btn btn-grass btn-lg align-items-baseline rounded-circle square-64"
+          [class.d-none]="!(showScroll$ | async)"
+          (click)="scrollToTop()">
+    <span class="material-icons align-baseline fw-bold">arrow_upward</span>
+  </button>
+</div>

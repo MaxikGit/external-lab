@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "7292b8b8-4ef5-4f9f-b548-bacadd034f49",
+		"name": "module3_initialize",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25803419"
+	},
+	"item": [
+		{
+			"name": "generateDataBase",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/generate?size=1000&user_has_orders=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"generate"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "1000"
+						},
+						{
+							"key": "user_has_orders",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

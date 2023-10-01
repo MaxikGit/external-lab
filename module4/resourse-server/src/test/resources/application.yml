@@ -1,0 +1,9 @@
+logging:
+  level:
+    root: error
+    org:
+      springframework:
+        security: debug
+spring:
+  main:
+    banner-mode: off

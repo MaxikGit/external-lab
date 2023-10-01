@@ -1,0 +1,120 @@
+<!-- grey strip -->
+<grey-title-strip [pageTitle]="'Add New Coupon'"></grey-title-strip>
+<!-- Center of the page-->
+<div class="container-xxl">
+  <div class="row justify-content-center">
+    <div class="col-8 pt-5">
+      <form class="text-secondary" [formGroup]="inputForm" (ngSubmit)="onSubmit()">
+        <div class="row gx-5 gy-3">
+          <div class="col-6">
+            <label for="companyInput">Company</label>
+            <input type="text" class="form-control text-center" id="companyInput" formControlName="company">
+            <mat-error *ngIf="inputForm.get('company')?.touched && inputForm.get('company')?.hasError('required')">
+              Please enter company name
+            </mat-error>
+          </div>
+          <div class="col-6">
+            <label for="inputItemInput">Item Name</label>
+            <input type="text" class="form-control text-center" id="inputItemInput" formControlName="name">
+            <mat-error *ngIf="inputForm.get('name')?.touched && inputForm.get('name')?.hasError('required')">
+              Please enter product name
+            </mat-error>
+          </div>
+          <mat-error *ngIf="inputForm.get('name')?.touched && inputForm.get('name')?.hasError('minlength')">
+            The name must contain at least 3 letters
+          </mat-error>
+
+          <div class="col-6 d-grid gap-3">
+            <div>
+              <label for="categoryInput">Category</label>
+              <mat-select class="form-control form-select" id="categoryInput" required
+                          formControlName="categories" multiple>
+                <mat-select-trigger>{{categories?.value?.[0] || ''}}
+                  <span *ngIf="(categories?.value?.length || 0) > 1" class="example-additional-selection">
+                    (+{{(categories?.value?.length || 0) - 1}} {{categories?.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let category of categoriesList; let i=index" [value]="category">
+                  {{category}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="inputForm.get('categories')?.hasError('required')">
+                Please choose at least 1 category
+              </mat-error>
+            </div>
+
+            <div>
+              <label for="validThruInput">Valid to</label>
+              <input type="datetime-local" class="form-control" id="validThruInput" formControlName="validTo">
+              <mat-error
+                *ngIf="inputForm.get('validTo')?.touched && inputForm.get('validTo')?.hasError('invalidFutureDate')">
+                Please choose date in the future
+              </mat-error>
+              <mat-error *ngIf="inputForm.get('validTo')?.touched && inputForm.get('validTo')?.hasError('required')">
+                Please choose date
+              </mat-error>
+            </div>
+
+          </div>
+          <div class="col-6">
+            <label for="shortDescriptionInput">Short Description</label>
+            <textarea class="form-control h-84" id="shortDescriptionInput" formControlName="description"></textarea>
+            <mat-error
+              *ngIf="inputForm.get('description')?.touched && inputForm.get('description')?.hasError('required')">
+              Please enter product description
+            </mat-error>
+            <mat-error
+              *ngIf="inputForm.get('description')?.touched && inputForm.get('description')?.hasError('maxlength')">
+              Product description should be less then 15 symbols
+            </mat-error>
+          </div>
+          <div class="col-6 d-grid gap-3">
+            <div>
+              <label for="priceInput">Price</label>
+              <input type="number" class="form-control" id="priceInput" min="{{priceMin}}" max="{{priceMax}}" step="10"
+                     formControlName="price">
+              <mat-error *ngIf="inputForm.get('price')?.hasError('min')">
+                Product price should be greater then {{priceMin}}
+              </mat-error>
+              <mat-error *ngIf="inputForm.get('price')?.hasError('max')">
+                Product price should be less then {{priceMax}}
+              </mat-error>
+            </div>
+            <div>
+              <label for="imageInput">Image</label>
+              <div class="input-group d-grid ">
+
+                <label class="custom-input-file-container" for="imageInput">
+                  <input type="file" class="custom-file-input" id="imageInput" #imageInput accept="image/*"
+                         formControlName="image">
+                  <span class="input-group-text justify-content-between bg-body" id="imagePict">
+                    <span class="text-start">{{inputForm.get("image")?.value}}</span>
+                    <span class="material-icons">image</span>
+                  </span>
+                </label>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="longDescriptionInput">Long Description</label>
+            <textarea class="form-control h-84" id="longDescriptionInput" formControlName="longDescription"></textarea>
+            <mat-error *ngIf="inputForm.get('longDescription')?.hasError('minlength')">
+              Product long description should be greater then 20 symbols
+            </mat-error>
+          </div>
+
+          <div class="col-6"></div>
+          <div class="col-3 d-grid">
+            <button type="reset" class="btn border-secondary text-secondary" (click)="resetForm()">
+              {{inputForm.pristine ? 'Back' : 'Reset'}}
+            </button>
+          </div>
+          <div class="col-3 d-grid">
+            <button [disabled]="inputForm.invalid" type="submit" class="btn btn-grass">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

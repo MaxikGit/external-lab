@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: false
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: debug
+        security: debug
+        oauth2: debug

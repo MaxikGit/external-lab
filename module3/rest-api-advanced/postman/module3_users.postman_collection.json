@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "8af66de4-956c-423b-aafa-c9e6608d2282",
+		"name": "module3_users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25803419"
+	},
+	"item": [
+		{
+			"name": "GetUsers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/users?searchKey=T&sortDirection=asc&sortField=name&offset=0&size=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "searchKey",
+							"value": "T"
+						},
+						{
+							"key": "sortDirection",
+							"value": "asc"
+						},
+						{
+							"key": "sortField",
+							"value": "name"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PlaceUserOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"productId\": 10,\r\n        \"quantity\": 2\r\n    },\r\n    {\r\n        \"productId\": 3,\r\n        \"quantity\": 1\r\n    },\r\n    {\r\n        \"productId\": 5,\r\n        \"quantity\": 3\r\n    },\r\n    \r\n    {\r\n        \"productId\": 2,\r\n        \"quantity\": 3\r\n    },\r\n    {\r\n        \"productId\": 1299,\r\n        \"quantity\": 3\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/333/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"333",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

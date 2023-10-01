@@ -1,0 +1,33 @@
+server:
+  port: 9000
+
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        issuer-url: http://localhost:${server.port}
+        client-id: client
+        client-secret: secret
+        redirect-uri: https://spring.io/auth
+      resourceserver:
+          user-registration:
+            uri: http://localhost:8080/users
+            username: server
+            password: 123456
+  data:
+    web:
+      pageable:
+        page-parameter: offset
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/module4_auth
+    username: postgres
+    password: postgres
+    hikari:
+      pool-name: HikariCP
+      maximum-pool-size: 10
+      data-source-properties:
+        prepStmtCacheEnabled: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true

@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "b23cb963-89fe-4302-bf20-0f621e79608e",
+		"name": "module2_certificate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25803419"
+	},
+	"item": [
+		{
+			"name": "NewCertificate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"750$\",\r\n    \"description\": \"car shops only card\",\r\n    \"price\": 770.25,\r\n    \"duration\": 30,\r\n    \"createDate\": \"2023-04-12T18:22:04.055405\",\r\n    \"lastUpdateDate\": \"2023-04-12T18:22:04.055405\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/certificates",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCertificate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/certificates/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCertificates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/certificates?sortDirection=desc&sortField=lastUpdateDate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "tag",
+							"value": "a",
+							"disabled": true
+						},
+						{
+							"key": "sortDirection",
+							"value": "desc"
+						},
+						{
+							"key": "sortField",
+							"value": "lastUpdateDate"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCertificate",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/certificates/7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCertificate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 9,\r\n    \"name\": \"1200$\",\r\n    \"description\": \"beaty shops only card\",\r\n    \"price\": 1255.25,\r\n    \"duration\": 18,\r\n    \"createDate\": \"2023-04-12T18:22:04.055405\",\r\n    \"lastUpdateDate\": \"2023-04-12T18:22:04.055405\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/certificates/9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PartialUpdateCertificate",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"1999$\",\r\n    \"description\": \"updated beaty shops only card\",\r\n    \"price\": 2150\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/certificates/9",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						"9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

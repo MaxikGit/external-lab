@@ -1,0 +1,95 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM 'H/5 * * * *'
+    }
+    options {
+        // Only keep the 3 most recent builds
+        buildDiscarder(logRotator(numToKeepStr:'3'))
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/module6']],
+                        extensions: [[$class             : 'SparseCheckoutPaths',
+                                      sparseCheckoutPaths: [[path: 'module2/rest-api-basics']]]],
+                        userRemoteConfigs: [[url: 'git@github.com:MaxikGit/epam-external-course.git']])
+            }
+        }
+
+        stage('Tests') {
+            steps {
+                dir('module2/rest-api-basics'){
+                    pwd()
+                    bat './gradlew test'
+                    echo "tests run"
+                }
+            }
+            post {
+                always {
+                    junit allowEmptyResults: true, skipPublishingChecks: true, testResults: '**/test-results/**/*.xml'
+                    echo "tests published"
+
+                }
+            }
+        }
+
+
+
+        stage('SonarQube analysis') {
+            steps {
+                dir('module2/rest-api-basics'){
+                    pwd()
+                    withSonarQubeEnv('Default sonar') {
+                        bat "./gradlew sonar"
+                        echo "sonar started"
+                    }
+                }
+            }
+        }
+
+        stage('JaCoCo analysis') {
+            steps {
+                jacoco()
+                echo "Published JaCoCo coverage report"
+            }
+        }
+
+        stage('Sonar Gate') {
+            steps {
+                waitForQualityGate(abortPipeline: true)
+                echo "sonar gate answer received"
+            }
+        }
+
+        stage('Build artifact') {
+            steps {
+                dir('module2/rest-api-basics'){
+                    pwd()
+                    bat "./gradlew war"
+                    echo "artifact built"
+                }
+            }
+        }
+
+        stage('Archive artifact') {
+            steps {
+                archiveArtifacts(artifacts: '**/build/libs/*.war',
+                        followSymlinks: false,
+                        onlyIfSuccessful: true)
+                echo "artifact archived"
+            }
+        }
+
+        stage('Copy n deploy') {
+            steps {
+                deploy adapters: [tomcat9(credentialsId: 'tomcat9',
+                        path: '',
+                        url: 'http://localhost:8080')],
+                        contextPath: '', war: '**/*.war'
+                echo "successfully deployed on Tomcat"
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<div class="input-group">
+  <label for="top-search-field"></label>
+  <input type="search" class="form-control text-dark border-secondary"
+         placeholder=" Search by item name and description"
+         id="top-search-field"
+         [formControl]="itemSearch">
+  <div class="btn-group corner-rad-0">
+    <button type="button" id="category-all" (click)="resetCategories()"
+            class="btn btn-outline-secondary text-dark px-4 border-end-0 corner-rad-0">
+      All Categories
+    </button>
+    <button type="button" id="dropdown-category"
+            class="btn btn-outline-secondary text-dark dropdown-toggle dropdown-toggle-split border-start-0"
+            data-bs-toggle="dropdown" aria-expanded="false">
+    </button>
+    <!-- Add your dropdown menu items here -->
+    <ul class="dropdown-menu scroll-drop-down" aria-labelledby="dropdown-category" id="category-dropdown">
+      <li>
+        <mat-form-field>
+          <input type="search" matInput placeholder="Search by tag" [formControl]="categorySearch">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </li>
+      <li *ngFor="let category of categories | categoryFilter: categorySearch.value ?? ''">
+        <button class="dropdown-item" (click)="filterByCategory(category)">{{category}}</button>
+      </li>
+    </ul>
+  </div>
+</div>

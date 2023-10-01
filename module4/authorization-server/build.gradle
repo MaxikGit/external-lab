@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id("io.freefair.lombok") version "$lombok_plugin_version"
+    id 'org.springframework.boot' version "$spring_boot_plugin_version"
+    id 'io.spring.dependency-management' version "$spring_dependency_management_version"
+}
+
+group = 'com.epam.esm.authorizationserver'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.springframework.security:spring-security-oauth2-authorization-server:$oauth2_auth_server_version"
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.liquibase:liquibase-core'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+
+    implementation "org.mapstruct:mapstruct:$map_struct_version"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$map_struct_version"
+    implementation "org.projectlombok:lombok-mapstruct-binding:$lombok_map_struct_version"
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

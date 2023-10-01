@@ -1,0 +1,79 @@
+<!-- Center of the page-->
+<div class="col-8 position-absolute top-50 start-50 translate-middle shadow-sm">
+  <!-- Gray header-->
+  <div class="bg-grey p-3 ps-4"><span class="text-light fs-5 fw-bold">Register</span></div>
+  <!-- White box in the center-->
+  <div class="bg-white p-4">
+    <form class="text-secondary" [formGroup]="inputForm" (ngSubmit)="onSubmit()">
+      <div class="d-grid gap-1">
+        <div class="row">
+          <div class="col-6">
+            <label for="loginInput">Login Name</label>
+            <input type="text" class="form-control text-center" id="loginInput" formControlName="login">
+            <mat-error *ngIf="inputForm.get('login')?.touched && inputForm.get('login')?.hasError('required')">
+              Please enter your login
+            </mat-error>
+          </div>
+          <div class="col-6">
+            <label for="firstNameInput">First Name</label>
+            <input type="text" class="form-control text-center" id="firstNameInput" formControlName="name">
+            <mat-error *ngIf="inputForm.get('name')?.hasError('minlength')">
+              Your name must contain at least 3 letters
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <label for="passwordInput">Password</label>
+            <input type="password" class="form-control" id="passwordInput" formControlName="password">
+            <mat-error *ngIf="inputForm.get('password')?.touched && inputForm.get('password')?.hasError('required')">
+              Please enter your password
+            </mat-error>
+          </div>
+          <div class="col-6">
+            <label for="repeatPasswordInput">Repeat Password</label>
+            <input type="password" class="form-control" id="repeatPasswordInput" formControlName="rePassword">
+            <mat-error *ngIf="inputForm.get('rePassword')?.touched && inputForm.get('rePassword')?.hasError('invalidPass')">
+              Password repeat does not match
+            </mat-error>
+            <mat-error *ngIf="inputForm.get('rePassword')?.touched && inputForm.get('rePassword')?.hasError('required')">
+              Please repeat your password
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <label for="emailInput">Email</label>
+            <input type="email" class="form-control" id="emailInput" formControlName="email">
+            <mat-error *ngIf="inputForm.get('email')?.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="inputForm.get('email')?.touched && inputForm.get('email')?.hasError('required')">
+              Please enter your email
+            </mat-error>
+          </div>
+          <div class="col-6">
+            <label for="addressInput">Address</label>
+            <input type="text" class="form-control" id="addressInput" formControlName="address">
+            <mat-error *ngIf="inputForm.get('address')?.hasError('min')">
+              Your address must contain at least 10 letters
+            </mat-error>
+          </div>
+        </div>
+
+        <!--  buttons section-->
+        <div class="row mt-3">
+          <div class="col-6"></div>
+          <div class="col-3 d-grid">
+            <button type="reset" class="btn border-secondary text-secondary" (click)="resetForm()">Cancel</button>
+          </div>
+          <div class="col-3 d-grid">
+            <button [disabled]="inputForm.invalid" type="submit" class="btn btn-grass">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

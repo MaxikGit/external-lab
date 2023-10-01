@@ -1,0 +1,30 @@
+<!-- Center of the page-->
+<div class="col-3 position-absolute top-55 start-50 translate-middle shadow-sm">
+  <!-- White box in the center-->
+  <div class="bg-white p-5">
+    <!--    Circle with the profile picture -->
+    <div class="col-xxl-5 col-xl-4 col-sm-4 col-6 position-absolute top-0 start-50 translate-middle">
+      <div class="rounded-circle ratio ratio-1x1 bg-light-grey">
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="fs-1 fw-bold text-light">Logo</div>
+        </div>
+      </div>
+    </div>
+    <!--     Inputs and button block-->
+    <form #loginForm="ngForm" (ngSubmit)="checkLogin()" >
+      <div class="mx-4 d-grid gap-2">
+        <div class="mt-5 mt-xxl-4 mt-xl-3 mt-sm-1 mb-5 mb-xxl-4 mb-xl-4 mb-sm-1"></div>
+        <div class="mt-xxl-auto"></div>
+        <label>
+          <input type="text" class="form-control text-center" placeholder="your login"
+                 [(ngModel)]="login" name="login_input" required>
+        </label>
+        <label>
+          <input type="password" class="form-control text-center" placeholder="your password"
+                 [(ngModel)]="password" name="password_input" required>
+        </label>
+        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-grass">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<!-- Center of the page-->
+<div class="container-fluid mt-1"
+     infinite-scroll
+     [infiniteScrollDistance]="distance"
+     [infiniteScrollThrottle]="throttle"
+     (scrolled)="onScroll()">
+  <div *ngIf="items"
+       class="row row-cols-xxl-5 row-cols-md-3 row-cols-sm-2 justify-content-center pt-4 g-5 mx-5"
+       id="main-container">
+    <app-item *ngFor="let item of items;" [item]="item"></app-item>
+    <scroll-to-top></scroll-to-top>
+  </div>
+  <mat-spinner class="position-fixed bottom-50 start-50 translate-middle-x" *ngIf="isLoading"></mat-spinner>
+</div>

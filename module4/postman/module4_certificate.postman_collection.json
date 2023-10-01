@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "b2b71e34-1ecf-4d46-8b41-44b66f18c2b5",
+		"name": "module4_certificate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25803419"
+	},
+	"item": [
+		{
+			"name": "GetCertificates",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/certificates?tags=A, E&sortDirection=desc&sortField=createDate&offset=0&size=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "7",
+							"disabled": true
+						},
+						{
+							"key": "tags",
+							"value": "A, E"
+						},
+						{
+							"key": "sortDirection",
+							"value": "desc"
+						},
+						{
+							"key": "sortField",
+							"value": "createDate"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCertificate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/certificates/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewCertificate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"750$\",\r\n    \"description\": \"car shops only card\",\r\n    \"price\": 770.25,\r\n    \"duration\": 30,\r\n    \"createDate\": \"2023-04-12T18:22:04.055405\",\r\n    \"lastUpdateDate\": \"2023-04-12T18:22:04.055405\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/certificates",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCertificate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 14,\r\n    \"name\": \"1500$\",\r\n    \"description\": \"happy wedding day\",\r\n    \"price\": 1145.25,\r\n    \"duration\": 32,\r\n    \"createDate\": \"2023-05-12T12:58:07.920035\",\r\n    \"lastUpdateDate\": \"2023-05-12T12:58:07.920035\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/certificates/2002",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						"2002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PartialUpdateCertificate",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/certificates/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PriceUpdate",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2002,\r\n    \"price\": 3000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/certificates/price",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCertificate",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/certificates/2002",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"certificates",
+						"2002"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearer}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

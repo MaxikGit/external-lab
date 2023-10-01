@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id("io.freefair.lombok") version "$lombok_plugin_version"
+    id 'org.springframework.boot' version "$spring_boot_plugin_version"
+    id 'io.spring.dependency-management' version "$spring_dependency_management_version"
+}
+
+group 'com.epam.esm'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java.sourceCompatibility(JavaVersion.VERSION_17)
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa'){
+                exclude group: 'org.springframework.data', module: '*'
+            }
+    implementation 'org.springframework:spring-orm'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    testRuntimeOnly 'com.h2database:h2'
+
+    implementation "org.mapstruct:mapstruct:$map_struct_version"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$map_struct_version"
+    implementation "org.projectlombok:lombok-mapstruct-binding:$lombok_map_struct_version"
+
+    implementation("com.github.javafaker:javafaker:$faker_version")
+            {  exclude group: 'org.yaml', module: '*' }
+}
+
+test {
+    useJUnitPlatform()
+}

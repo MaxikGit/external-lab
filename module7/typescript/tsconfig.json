@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "build/js",
+//    "outFile": "build/app-bundle.js",
+    "sourceMap": true
+  },
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended",
+//  "files": ["src/british-app.ts"],
+  "files": ["src/euro-app.ts", "src/british-app.ts", "src/american-app.ts"],
+//  "files": ["src/american-app.ts"]
+}

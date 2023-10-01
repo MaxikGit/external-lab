@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id("io.freefair.lombok") version "$lombokVersion"
+    id 'war'
+    id "org.sonarqube" version "$sonarVerion"
+    id 'jacoco'
+}
+
+group 'com.epam.esm'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework:spring-webmvc:$springVersion"
+    implementation "org.springframework:spring-core:$springVersion"
+    implementation "org.springframework:spring-context:$springVersion"
+    implementation "org.springframework:spring-jdbc:$springVersion"
+    testImplementation "org.springframework:spring-test:$springVersion"
+
+    implementation "org.postgresql:postgresql:$postgreDriverVersion"
+    testImplementation "com.h2database:h2:$h2databaseVersion"
+    implementation "com.zaxxer:HikariCP:$hikariPoolVersion"
+
+    implementation "org.hibernate.validator:hibernate-validator:$hybernateValidatorVersion"
+
+    implementation "org.mapstruct:mapstruct:$mapStructVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
+    implementation "org.projectlombok:lombok-mapstruct-binding:$lombokMapStructVersion"
+
+    compileOnly "javax.servlet:javax.servlet-api:$servletApiVersion"
+    testImplementation "javax.servlet:javax.servlet-api:$servletApiVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+
+    implementation "org.slf4j:slf4j-reload4j:$reloadVersion"
+    implementation "org.slf4j:slf4j-api:$sl4jVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:$jJupiterVersion"
+    testImplementation "org.mockito:mockito-junit-jupiter:$mockitoJupiterVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
